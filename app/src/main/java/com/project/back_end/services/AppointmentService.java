@@ -6,6 +6,7 @@ import com.project.back_end.repositories.PatientRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +54,10 @@ public class AppointmentService {
     @Transactional
     public void deleteAppointment(Long id) {
         appointmentRepository.deleteById(id);
+    }
+
+    // ✅ New method to retrieve appointments by doctor and date
+    public List<Appointment> getAppointmentsByDoctorAndDate(Long doctorId, LocalDate date) {
+        return appointmentRepository.findByDoctorIdAndDate(doctorId, date);
     }
 }
