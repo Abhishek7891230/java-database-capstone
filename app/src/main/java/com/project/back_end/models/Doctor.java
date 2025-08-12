@@ -1,11 +1,13 @@
 package com.project.back_end.models;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Doctor {
@@ -30,16 +32,20 @@ public class Doctor {
     @Size(min = 5, max = 100)
     private String email;
 
+    @ElementCollection
+    private List<String> availableTimes;
+
     public Doctor() {
         // Default constructor
     }
 
-    public Doctor(Long id, String name, String specialization, String phone, String email) {
+    public Doctor(Long id, String name, String specialization, String phone, String email, List<String> availableTimes) {
         this.id = id;
         this.name = name;
         this.specialization = specialization;
         this.phone = phone;
         this.email = email;
+        this.availableTimes = availableTimes;
     }
 
     // Getters and setters
@@ -82,6 +88,12 @@ public class Doctor {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<String> getAvailableTimes() {
+        return availableTimes;
+    }
+
+    public void setAvailableTimes(List<String> availableTimes) {
+        this.availableTimes = availableTimes;
+    }
 }
-
-
